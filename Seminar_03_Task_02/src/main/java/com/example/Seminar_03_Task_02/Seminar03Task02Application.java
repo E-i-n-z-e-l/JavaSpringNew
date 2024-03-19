@@ -9,5 +9,5 @@ public class Seminar03Task02Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Seminar03Task02Application.class, args);
 	}
-
+	//  http://localhost:8080
 }
