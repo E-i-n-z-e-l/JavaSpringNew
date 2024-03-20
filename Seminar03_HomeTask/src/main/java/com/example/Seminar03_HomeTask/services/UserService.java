@@ -15,6 +15,13 @@ public class UserService {
         this.notificationService = notificationService;
     }
 
+    /**
+     * Метод, который создает нового пользователя с указанными параметрами имени, возраста и email.
+     * @param name
+     * @param age
+     * @param email
+     * @return
+     */
     public User createUser(String name, int age, String email) {
         User user = new User();
         user.setName(name);

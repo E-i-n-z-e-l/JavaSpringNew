@@ -14,6 +14,10 @@ import java.util.stream.Collectors;
 @Service
 public class DataProcessingService {
 
+    /**
+     * Геттер для получения экземпляра UserRepository.
+     * @return
+     */
     public UserRepository getRepository() {
         return repository;
     }
@@ -24,18 +28,34 @@ public class DataProcessingService {
     private UserRepository repository;
 
 
+    /**
+     * Метод для сортировки пользователей по возрасту.
+     * @param users
+     * @return
+     */
     public List<User> sortUsersByAge(List<User> users) {
         return users.stream()
                 .sorted(Comparator.comparing(User::getAge))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Метод для фильтрации пользователей по возрасту.
+     * @param users
+     * @param age
+     * @return
+     */
     public List<User> filterUsersByAge(List<User> users, int age) {
         return users.stream()
                 .filter(user -> user.getAge() > age)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Метод для вычисления среднего возраста пользователей.
+     * @param users
+     * @return
+     */
     public double calculateAverageAge(List<User> users) {
         return users.stream()
                 .mapToInt(User::getAge)
@@ -43,8 +63,11 @@ public class DataProcessingService {
                 .orElse(0);
     }
 
-    public void  addUserToList(User user)
-    {
+    /**
+     * Метод для добавления пользователя в список пользователей в UserRepository.
+     * @param user
+     */
+    public void addUserToList(User user) {
         repository.getUsers().add(user);
     }
 }
