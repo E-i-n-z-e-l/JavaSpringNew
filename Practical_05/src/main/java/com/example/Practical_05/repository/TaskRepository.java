@@ -5,6 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
+/**
+ * TaskRepository - это интерфейс, расширяющий JpaRepository<Task, Long>.
+ * Репозиторий предоставляет методы для выполнения операций сущности Task в базе данных.
+ */
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByStatus(Task.TaskStatus status);
     Task findById(long id);
