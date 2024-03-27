@@ -20,12 +20,21 @@ public class NoteController {
         this.noteService = noteService;
     }
 
+    /**
+     * Показывает все заметки.
+     * @return
+     */
     @GetMapping
     public ResponseEntity<List<Note>> getAllNotes() {
         List<Note> notes = noteService.getAllNotes();
         return ResponseEntity.ok(notes);
     }
 
+    /**
+     * Показывает заметку по id.
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Note> getNoteById(@PathVariable Long id) {
         Note note = noteService.getNoteById(id);
@@ -36,12 +45,23 @@ public class NoteController {
         }
     }
 
+    /**
+     * Создает заметку.
+     * @param note
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
         Note createdNote = noteService.createNote(note);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdNote);
     }
 
+    /**
+     * Изменить заметку.
+     * @param id
+     * @param updatedNote
+     * @return
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Note> updateNoteById(@PathVariable Long id, @RequestBody Note updatedNote) {
         Note note = noteService.updateNoteById(id, updatedNote);
@@ -52,6 +72,11 @@ public class NoteController {
         }
     }
 
+    /**
+     * Удаление.
+     * @param id
+     * @return
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteNoteById(@PathVariable Long id) {
         noteService.deleteNoteById(id);
