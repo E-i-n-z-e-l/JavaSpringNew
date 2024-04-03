@@ -1,0 +1,13 @@
+package com.example.Practical_09_SecondBook;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class Practical09SecondBookApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
