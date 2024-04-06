@@ -102,9 +102,3 @@ public interface NoteService {
     Note updateNoteById(Long id, Note updatedNote);
     void deleteNoteById(Long id);
 }
-@SpringBootApplication
-public class Practical10Application {
-  public static void main(String[] args) {
-    SpringApplication.run(Practical10Application.class, args);
-  }
-}
