@@ -1,0 +1,1 @@
+Note(id=null, title=Название записи, content=Содержимое записи, dateOfCreation=null)
