@@ -27,6 +27,13 @@ public class NoteController {
         List<Note> notes = noteService.getAllNotes();
         return ResponseEntity.ok(notes);
     }
+//    @PostMapping
+//    public ResponseEntity<Note> createNote(@RequestBody Note note) {
+//        fileWriterService.writeToFile(note.toString());
+//        Note createdNote = noteService.createNote(note);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(createdNote);
+//    }
+
     @PostMapping
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
         fileWriterService.writeToFile(note.toString());

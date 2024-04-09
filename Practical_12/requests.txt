@@ -1,1 +1,4 @@
 Note(id=null, title=Название записи, content=Содержимое записи, dateOfCreation=null)
+Note(id=null, title=Название записи, content=Содержимое записи, dateOfCreation=null)
+Note(id=null, title=Запись №1, content=№1№1№1№1№1№1№1№1№1№1, dateOfCreation=null)
+Note(id=null, title=Запись №2, content=№2№2№2№2№2№2№2№2№2№2№2№2, dateOfCreation=null)
