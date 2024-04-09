@@ -19,7 +19,6 @@ public class NoteServiceImpl implements NoteService {
     public List<Note> getAllNotes() {
         return noteRepository.findAll();
     }
-
     @Override
     public Note createNote(Note note) {
         return noteRepository.save(note);

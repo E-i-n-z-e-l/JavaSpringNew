@@ -5,47 +5,25 @@ public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String title;
-
     @Column(nullable = false)
     private String content;
-
     @CreationTimestamp
     private LocalDateTime dateOfCreation;
 }
 @Repository
 public interface NoteRepository extends JpaRepository<Note, Long> {
 }
-public interface NoteService {
-    List<Note> getAllNotes();
-    Note createNote(Note note);
-}
-@Service
-public class NoteServiceImpl implements NoteService {
-    private final NoteRepository noteRepository;
-
-    public NoteServiceImpl(NoteRepository noteRepository) {
-        this.noteRepository = noteRepository;
-    }
-
-    @Override
-    public List<Note> getAllNotes() {
-        return noteRepository.findAll();
-    }
-
-    @Override
-    public Note createNote(Note note) {
-        return noteRepository.save(note);
-    }
-}
 @RestController
 @RequestMapping("/api/notes")
 public class NoteController {
     private final NoteService noteService;
-    public NoteController(NoteService noteService) {
+    private final FileWriterService fileWriterService;
+    @Autowired
+    public NoteController(NoteService noteService, FileWriterService fileWriterService) {
         this.noteService = noteService;
+        this.fileWriterService = fileWriterService;
     }
     @GetMapping
     public ResponseEntity<List<Note>> getAllNotes() {
@@ -54,7 +32,41 @@ public class NoteController {
     }
     @PostMapping
     public ResponseEntity<Note> createNote(@RequestBody Note note) {
+        fileWriterService.writeToFile(note.toString());
         Note createdNote = noteService.createNote(note);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdNote);
+    }
+}
+@Data
+@Service
+public class FileWriterService {
+    private final String fileName = "requests.txt";
+    public void writeToFile(String request) {
+        try {
+            FileWriter writer = new FileWriter(fileName, true);
+            writer.write(request + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+public interface NoteService {
+    List<Note> getAllNotes();
+    Note createNote(Note note);
+}
+@Service
+public class NoteServiceImpl implements NoteService {
+    private final NoteRepository noteRepository;
+    public NoteServiceImpl(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
+    @Override
+    public List<Note> getAllNotes() {
+        return noteRepository.findAll();
+    }
+    @Override
+    public Note createNote(Note note) {
+        return noteRepository.save(note);
     }
 }
